@@ -3,8 +3,6 @@ package com.sher.entity;
 import com.sher.dto.FoodType;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -26,6 +24,6 @@ public class Cat implements Animal {
 
     @Override
     public List<FoodType> getPossibleFeedTypes() {
-        return new ArrayList<>(Arrays.asList(FoodType.MILK, FoodType.FISH));
+        return List.of(FoodType.MILK, FoodType.FISH);
     }
 }

@@ -4,7 +4,6 @@ import com.sher.configuration.AnnotationConfiguration;
 import com.sher.dto.Food;
 import com.sher.dto.FoodType;
 import com.sher.entity.Animal;
-import com.sher.event.ZooEvent;
 import com.sher.service.ZooService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -25,12 +24,8 @@ public class Main {
         food.setFoodType(FoodType.WORM);
         food.setExpirationDate(LocalDateTime.now().plusHours(6));
         List<Animal> angryAnimals = service.feed(food);
-        eventAngryAnimals(context, angryAnimals);
-    }
+        service.eventAngryAnimals(angryAnimals);
 
-    private static void eventAngryAnimals(ApplicationContext context, List<Animal> angryAnimals) {
-        ZooEvent zooEvent= new ZooEvent(angryAnimals,"ALARM! There is angry animal in zoo");
-        context.publishEvent(zooEvent);
     }
 
     public static ApplicationContext getAnnotationContext() {

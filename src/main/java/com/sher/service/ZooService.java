@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ZooService {
     List<Animal> feed(Food food);
+    void eventAngryAnimals( List<Animal> angryAnimals);
 }

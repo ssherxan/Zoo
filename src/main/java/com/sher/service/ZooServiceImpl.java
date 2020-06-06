@@ -5,19 +5,21 @@ import com.sher.entity.Animal;
 import com.sher.entity.Zoo;
 import com.sher.event.ZooEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ZooServiceImpl implements ZooService {
+    private static ApplicationEventPublisher publisher;
     private final Zoo zoo;
 
     @Autowired
-    public ZooServiceImpl(Zoo zoo) {
+    public ZooServiceImpl(Zoo zoo, ApplicationEventPublisher publisher) {
         this.zoo = zoo;
+        this.publisher = publisher;
     }
 
     @Override
@@ -29,7 +31,12 @@ public class ZooServiceImpl implements ZooService {
                 angryAnimals.add(animal);
             }
         }
-        System.out.println(angryAnimals);
+        System.out.println("angryAnimals: " + angryAnimals);
         return angryAnimals;
+    }
+
+    public void eventAngryAnimals(List<Animal> angryAnimals) {
+        ZooEvent zooEvent = new ZooEvent(angryAnimals, "ALARM! There is angry animal in zoo");
+        publisher.publishEvent(zooEvent);
     }
 }

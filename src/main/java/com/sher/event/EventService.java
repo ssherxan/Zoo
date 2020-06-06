@@ -21,14 +21,19 @@ public class EventService {
 
     @EventListener(ZooEvent.class)
     public void onApplicationEvent(ZooEvent zooEvent) {
-        List<Animal> animalList = (List<Animal>) zooEvent.getSource();
-        if(!animalList.isEmpty()){
+        List<Animal> angryAnimals = (List<Animal>) zooEvent.getSource();
+
+        if (!angryAnimals.isEmpty()) {
             System.out.println(zooEvent.getMessage());
+
             FoodType[] foodTypes = FoodType.values();
-            for(FoodType foodType: foodTypes){
+            for (FoodType foodType : foodTypes) {
                 Food food = new Food();
                 food.setFoodType(foodType);
-                zooService.feed(food);
+                angryAnimals = zooService.feed(food);
+                if (angryAnimals.isEmpty()) {
+                    break;
+                }
             }
         }
     }

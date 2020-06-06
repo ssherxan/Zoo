@@ -3,7 +3,6 @@ package com.sher.entity;
 import com.sher.dto.FoodType;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -12,11 +11,7 @@ public class Fish implements Animal {
 
     @Override
     public void voice() {
-    }
-
-    @Override
-    public void setAngry(boolean angry) {
-        this.angry = angry;
+        System.out.println("bul bul");
     }
 
     @Override
@@ -25,9 +20,12 @@ public class Fish implements Animal {
     }
 
     @Override
+    public void setAngry(boolean angry) {
+        this.angry = angry;
+    }
+
+    @Override
     public List<FoodType> getPossibleFeedTypes() {
-        List<FoodType> foodType = new ArrayList<>();
-        foodType.add(FoodType.WORM);
-        return foodType;
+        return List.of(FoodType.WORM);
     }
 }

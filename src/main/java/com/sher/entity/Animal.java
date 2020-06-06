@@ -11,14 +11,15 @@ public interface Animal {
 
     boolean isAngry();
 
+    void setAngry(boolean angry);
+
     List<FoodType> getPossibleFeedTypes();
 
     default boolean eat(Food food) {
-        List<FoodType> possibleFeedTypes = getPossibleFeedTypes();
-        if (possibleFeedTypes.contains(food.getFoodName())) {
+        System.out.println(this + " are eating " + food.getFoodType());
+        if(isAngry()){
             setAngry(false);
         }
-        return isAngry();
+        return true;
     }
-    void setAngry(boolean angry);
 }

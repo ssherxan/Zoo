@@ -6,8 +6,7 @@ public class Food {
     private FoodType foodType;
     private LocalDateTime expirationDate;
 
-    public FoodType getFoodName() {
-
+    public FoodType getFoodType() {
         return foodType;
     }
 
