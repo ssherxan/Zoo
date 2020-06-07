@@ -22,10 +22,8 @@ public class EventService {
     @EventListener(ZooEvent.class)
     public void onApplicationEvent(ZooEvent zooEvent) {
         List<Animal> angryAnimals = (List<Animal>) zooEvent.getSource();
-
         if (!angryAnimals.isEmpty()) {
             System.out.println(zooEvent.getMessage());
-
             FoodType[] foodTypes = FoodType.values();
             for (FoodType foodType : foodTypes) {
                 Food food = new Food();

@@ -1,6 +1,5 @@
 package com.sher.entity;
 
-
 import com.sher.dto.Food;
 import com.sher.dto.FoodType;
 
@@ -17,9 +16,7 @@ public interface Animal {
 
     default boolean eat(Food food) {
         System.out.println(this + " are eating " + food.getFoodType());
-        if(isAngry()){
-            setAngry(false);
-        }
+        setAngry(false);
         return true;
     }
 }

@@ -26,12 +26,15 @@ public class ZooServiceImpl implements ZooService {
     public List<Animal> feed(Food food) {
         List<Animal> angryAnimals = new ArrayList<>();
         for (Animal animal : zoo.getAnimals()) {
-            animal.eat(food);
+            if (animal.isAngry()) {
+                animal.eat(food);
+            }
             if (animal.isAngry()) {
                 angryAnimals.add(animal);
             }
         }
         System.out.println("angryAnimals: " + angryAnimals);
+        // eventAngryAnimals(angryAnimals);
         return angryAnimals;
     }
 

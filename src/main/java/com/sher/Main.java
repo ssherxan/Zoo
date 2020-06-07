@@ -25,7 +25,6 @@ public class Main {
         food.setExpirationDate(LocalDateTime.now().plusHours(6));
         List<Animal> angryAnimals = service.feed(food);
         service.eventAngryAnimals(angryAnimals);
-
     }
 
     public static ApplicationContext getAnnotationContext() {
